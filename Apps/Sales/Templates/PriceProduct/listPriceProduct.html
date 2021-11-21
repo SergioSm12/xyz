@@ -1,0 +1,49 @@
+{% extends "Base.html" %}
+{% block title %} list Price Product {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-2 col-xl-2">
+        <div class="card">
+            <div class="card-body">
+              <h2>Options</h2>
+              <a href="{% url 'listCustomers' %}" class="btn btn-info" role="button"> Registered Customers</a>
+              <br><br>
+
+
+            </div>
+        </div>
+    </div>
+     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <h1>list Price Product</h1>
+      <div class="table-responsive py-2 " >
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>#</th>
+                <th>id</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Date update</th>
+                <th>stock</th>
+                <th>Bar Code</th>
+             </tr>
+            </thead>
+              <tbody>
+               {% for price in priceProduct %}
+               <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{price.id_price_product}}</td>
+                  <td>{{price.fk_id_product_provider.fk_id_product.product_name}}</td>
+                  <td>{{price.sale_price}}</td>
+                  <td>{{price.date_update}}</td>
+                  <td>{{price.fk_id_product_provider.stock }}</td>
+                  <td>{{price.fk_id_product_provider.bar_code}}</td>
+
+               </tr>
+               {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+{% endblock %}

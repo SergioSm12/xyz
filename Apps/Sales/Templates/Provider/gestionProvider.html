@@ -1,0 +1,49 @@
+{% extends "Base.html" %}
+{% block title %} Providers {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-2 col-xl-2">
+        <div class="card">
+            <div class="card-body">
+              <h2>Options</h2>
+              <a href="{% url 'createProvider' %}" class="btn btn-info" role="button">Create</a>
+
+            </div>
+        </div>
+    </div>
+  <div class="col-sm-12 col-md-6 col-lg-11 col-xl-11">
+      <h1>list Providers</h1>
+      <div class="table-responsive py-2 " >
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>#</th>
+                <th>id</th>
+                <th>Nombre</th>
+                <th>Nit</th>
+                <th>URL</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th colspan="2">Opciones</th>
+             </tr>
+            </thead>
+              <tbody>
+               {% for p in provider %}
+               <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{p.id_provider}}</td>
+                  <td>{{p.name}}</td>
+                  <td>{{p.nit}}</td>
+                  <td>{{p.url}}</td>
+                  <td>{{p.address}}</td>
+                  <td>{{p.phone_number}}</td>
+                  <td><a href="{% url 'providerData' p.id_provider %}" class="btn btn-info">Editar</a></td>
+                  <td><a href="{% url 'deleteProvider' p.id_provider %}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+               </tr>
+               {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+{% endblock %}

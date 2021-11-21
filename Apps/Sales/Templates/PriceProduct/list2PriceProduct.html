@@ -1,0 +1,52 @@
+{% extends "Base.html" %}
+{% block title %} list Price Product {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+              <h2>Options</h2>
+              <a href="{% url 'createPriceProduct' %}" class="btn btn-info" role="button">Assign price</a>
+
+            </div>
+        </div>
+    </div>
+     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <h1>Price Product</h1>
+      <div class="table-responsive py-2 " >
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>#</th>
+                <th>id</th>
+                <th>Name Product</th>
+                <th>Sale Price</th>
+                <th>Shop Price</th>
+                <th>Start Date</th>
+                <th>User Update</th>
+                <th>Date Update</th>
+
+                <th colspan="2">Options</th>
+             </tr>
+            </thead>
+              <tbody>
+               {% for price in priceproduct %}
+               <tr>
+                  <td>{{forloop.counter}}</td>
+                  <th>{{price.id_price_product}}</th>
+                  <td>{{price.fk_id_product_provider.fk_id_product.product_name}}</td>
+                  <td>{{price.sale_price}}</td>
+                  <td>{{price.shop_price}}</td>
+                  <td>{{price.start_date}}</td>
+                  <td>{{price.user_update}}</td>
+                  <td>{{price.date_update}}</td>
+                  <td><a href="{% url 'editPriceProduct' price.id_price_product %}" class="btn btn-info">Edit</a></td>
+                  <td><a href="{% url 'deletePriceProduct' price.id_price_product %}" class="btn btn-danger btnEliminacion">Delete</a></td>
+               </tr>
+               {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+{% endblock %}

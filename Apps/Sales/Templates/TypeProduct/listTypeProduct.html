@@ -1,0 +1,41 @@
+{% extends "Base.html" %}
+{% block title %} list Type Product {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+              <h2>Options</h2>
+              <a href="{% url 'createProductType' %}" class="btn btn-info" role="button">Create Product Type</a>
+
+            </div>
+        </div>
+    </div>
+     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <h1>Type Products</h1>
+      <div class="table-responsive py-2 " >
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>#</th>
+                <th>id</th>
+                <th>product Type Name</th>
+                <th colspan="2">Options</th>
+             </tr>
+            </thead>
+              <tbody>
+               {% for tp in productTypeList %}
+               <tr>
+                  <td>{{forloop.counter}}</td>
+                  <th>{{tp.id_product_type}}</th>
+                  <td>{{tp.product_type_name}}</td>
+                  <td><a href="{% url 'editProductType' tp.id_product_type %}" class="btn btn-info">Edit</a></td>
+                  <td><a href="{% url 'deleteProductType' tp.id_product_type %}" class="btn btn-danger btnEliminacion">Delete</a></td>
+               </tr>
+               {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "Base.html" %}
+{% block title %} list Ticket Detail {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-2 col-xl-2">
+        <div class="card">
+            <div class="card-body">
+              <h2>Options</h2>
+              <a href="{% url 'listPerson' %}" class="btn btn-info" role="button">Admin Person</a>
+              <br><br>
+              <a href="{% url 'createTicketDetail' %}" class="btn btn-info" role="button">Manage Returns</a>
+
+            </div>
+        </div>
+    </div>
+     <div class="col-sm-12 col-md-6 col-lg-10 col-xl-10">
+      <h1>Returns</h1>
+      <div class="table-responsive py-2 " >
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>#</th>
+                <th>id</th>
+                <th>Amount</th>
+                <th>product Name</th>
+                <th>Customer</th>
+                <th>Devolution request</th>
+                <th>Devolution Approved</th>
+                <th>Description</th>
+                <th>Administrator</th>
+                <th colspan="2">Options</th>
+             </tr>
+            </thead>
+              <tbody>
+               {% for td in listTicketDetail %}
+               <tr>
+                  <td>{{forloop.counter}}</td>
+                  <th>{{td.id_ticket_detail}}</th>
+                  <td>{{td.amount}}</td>
+                  <td>{{td.fk_id_tax_price_product.fk_id_price_product.fk_id_product_provider.fk_id_product.product_name}}</td>
+                  <td>{{td.fk_id_ticket.fk_id_person_customer.person_name}}</td>
+                  <td>{{td.devolution_request}}</td>
+                  <td>{{td.devolution_approved}}</td>
+                  <td>{{td.description_devolution}}</td>
+                  <td>{{td.fk_id_person_administrator}}</td>
+                  <td><a href="{% url 'editTicketDetail' td.id_ticket_detail %}" class="btn btn-info">Edit</a></td>
+                  <td><a href="{% url 'deleteTicketDetail' td.id_ticket_detail %}" class="btn btn-danger btnEliminacion">Delete</a></td>
+               </tr>
+               {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+{% endblock %}

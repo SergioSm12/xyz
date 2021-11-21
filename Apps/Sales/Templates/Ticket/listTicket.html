@@ -1,0 +1,48 @@
+{% extends "Base.html" %}
+{% block title %} list Ticket {% endblock %}
+{% block body %}
+<div class="row">
+
+     <div class="col-sm-12  col-lg-10 col-xl-10">
+      <h1>Ticket</h1>
+      <div class="table-responsive py-2 " >
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>#</th>
+                <th>Nº</th>
+                <th>Customer Name</th>
+                <th>Customer dni</th>
+                <th>Product</th>
+                <th>Sale Price </th>
+                <th>Tax Name </th>
+                <th>Tax Value </th>
+                <th>Half Payment </th>
+                <th>Ticket Date </th>
+                <th>Cashier</th>
+
+             </tr>
+            </thead>
+              <tbody>
+               {% for ticket in ticket %}
+               <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{ticket.id_ticket_detail}}</td>
+                  <td>{{ticket.fk_id_ticket.fk_id_person_customer.person_name}}</td>
+                  <td>{{ticket.fk_id_ticket.fk_id_person_customer.person_dni}}</td>
+                  <td>{{ticket.fk_id_tax_price_product.fk_id_price_product.fk_id_product_provider.fk_id_product.product_name}}</td>
+                  <td>{{ticket.fk_id_tax_price_product.fk_id_price_product.sale_price}}</td>
+                  <td>{{ticket.fk_id_tax_price_product.fk_id_tax.tax_name}}</td>
+                  <td>{{ticket.fk_id_tax_price_product.fk_id_tax.tax_value}}</td>
+                  <td>{{ticket.fk_id_ticket.half_payment}}</td>
+                  <td>{{ticket.fk_id_ticket.ticket_date}}</td>
+                  <td>{{ticket.fk_id_ticket.fk_id_person_cashier.person_name}}</td>
+
+               </tr>
+               {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+{% endblock %}

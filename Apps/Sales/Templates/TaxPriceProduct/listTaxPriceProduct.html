@@ -1,0 +1,42 @@
+{% extends "Base.html" %}
+{% block title %} list Tax {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card">
+            <div class="card-body">
+              <h2>Options</h2>
+              <a href="{% url 'assignTax' %}" class="btn btn-info" role="button">Assign Tax</a>
+
+            </div>
+        </div>
+    </div>
+     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <h1>Tax price Product</h1>
+      <div class="table-responsive py-2 " >
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>#</th>
+                <th>id</th>
+                <th>Valor</th>
+                <th>Tax Name</th>
+                <th>Creation Date</th>
+             </tr>
+            </thead>
+              <tbody>
+               {% for taxes in tax %}
+               <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{taxes.id_tax}}</td>
+                  <td>{{taxes.tax_value}}</td>
+                  <td>{{taxes.tax_name}}</td>
+                  <td>{{taxes.creation_date}}</td>
+               </tr>
+               {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+{% endblock %}

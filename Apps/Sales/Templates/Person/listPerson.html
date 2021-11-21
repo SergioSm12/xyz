@@ -1,0 +1,91 @@
+{% extends "Base.html" %}
+{% block title %} list Person {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5">
+     <div class="card">
+      <h1>Supermarket staff</h1>
+      <div class="table-responsive py-2 " >
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>#</th>
+                <th>id</th>
+                <th colspan="2">Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>DNI</th>
+                <th>Type</th>
+                <th colspan="2">Options</th>
+             </tr>
+            </thead>
+              <tbody>
+               {% for person in listStaff %}
+               <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{person.fk_id_person.id_person}}</td>
+                  <td>{{person.fk_id_person.person_name}}</td>
+                  <td>{{person.fk_id_person.person_last_name}}</td>
+                  <td>{{person.fk_id_person.person_address}}</td>
+                  <td>{{person.fk_id_person.person_phone}}</td>
+                  <td>{{person.fk_id_person.person_dni}}</td>
+                  <td>{{person.fk_id_person_type.person_type_name}}</td>
+
+                  <td><a href="{% url 'editPerson' person.fk_id_person.id_person %}" class="btn btn-info">Edit</a></td>
+                  <td><a href="{% url 'deletePerson' person.fk_id_person.id_person %}" class="btn btn-danger btnEliminacion">Delete</a></td>
+               </tr>
+               {% endfor %}
+              </tbody>
+          </table>
+      </div>
+     </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-5 col-xl-5">
+     <div class="card">
+      <h1>Customers</h1>
+      <div class="table-responsive py-2 " >
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>#</th>
+                <th>id</th>
+                <th colspan="2">Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>DNI</th>
+                <th>Type</th>
+                <th colspan="2">Options</th>
+             </tr>
+            </thead>
+              <tbody>
+               {% for person in listPerson %}
+               <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{person.fk_id_person.id_person}}</td>
+                  <td>{{person.fk_id_person.person_name}}</td>
+                  <td>{{person.fk_id_person.person_last_name}}</td>
+                  <td>{{person.fk_id_person.person_address}}</td>
+                  <td>{{person.fk_id_person.person_phone}}</td>
+                  <td>{{person.fk_id_person.person_dni}}</td>
+                  <td>{{person.fk_id_person_type.person_type_name}}</td>
+
+                  <td><a href="{% url 'editPerson' person.fk_id_person.id_person %}" class="btn btn-info">Edit</a></td>
+                  <td><a href="{% url 'deletePerson' person.fk_id_person.id_person %}" class="btn btn-danger btnEliminacion">Delete</a></td>
+               </tr>
+               {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+ </div>
+ <div class="col-sm-12 col-md-6 col-lg-2 col-xl-2">
+        <div class="card">
+            <div class="card-body">
+              <h2>Options</h2>
+              <a href="{% url 'createPerson' %}" class="btn btn-info" role="button">Create Person</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

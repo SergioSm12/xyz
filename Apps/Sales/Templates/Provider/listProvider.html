@@ -1,0 +1,46 @@
+{% extends "Base.html" %}
+{% block title %} list Provider {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-2 col-xl-2">
+        <div class="card">
+            <div class="card-body">
+              <h2>Options</h2>
+              <a href="{% url 'list2Provider' %}" class="btn btn-info" role="button">Detail Provider</a>
+              <br><br>
+              <a href="{% url 'createProductProvider' %}" class="btn btn-info" role="button">Product-Provider</a>
+
+            </div>
+        </div>
+    </div>
+     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <h1>Provider</h1>
+      <div class="table-responsive py-2 " >
+          <table class="table table-striped">
+            <thead>
+             <tr>
+                <th>#</th>
+                <th>id</th>
+                <th>Product</th>
+                <th>product Type</th>
+                <th>provider</th>
+                <th colspan="2">Options</th>
+             </tr>
+            </thead>
+              <tbody>
+               {% for provider in provider %}
+               <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{provider.id_product_provider}}</td>
+                  <td>{{provider.fk_id_product.product_name}}</td>
+                  <td>{{provider.fk_id_product.fk_id_product_type.product_type_name}}</td>
+                  <td>{{provider.fk_id_provider.name }}</td>
+                  <td><a href="{% url 'providerData' provider.fk_id_provider.id_provider %}" class="btn btn-info">Edit Provider</a></td>
+               </tr>
+               {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+{% endblock %}

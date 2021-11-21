@@ -1,0 +1,31 @@
+{% extends "Base.html" %}
+{% block title %} Create Product {% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col col-md-2 col-sm-3 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+              <h2>Options</h2>
+              <a href="{% url 'createProductType' %} " class="btn btn-info" role="button">Create Product Type </a>
+            </div>
+        </div>
+    </div>
+    <div class='col-12 col-md-6 offset-md-3'>
+        <div class="card">
+            <div class="card-body">
+              <h2>Create Product</h2>
+              <form action="/createProduct/" method="POST">
+                  {% csrf_token %}
+                  {{ form }}
+
+                  <div class="form-group">
+                     <input type="submit" value="Guardar" class="btn btn-primary">
+                  </div>
+              </form>
+              {{ mensaje }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
