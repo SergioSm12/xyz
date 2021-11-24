@@ -2,6 +2,16 @@
 {% block title %} list Ticket {% endblock %}
 {% block body %}
 <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-2 col-xl-2">
+        <div class="card">
+            <div class="card-body">
+              <h2>Options</h2>
+              <a href="{% url 'createTicketDetail' %}" class="btn btn-info" role="button">add Product</a>
+
+
+            </div>
+        </div>
+    </div>
 
      <div class="col-sm-12  col-lg-10 col-xl-10">
       <h1>Ticket</h1>
@@ -14,12 +24,14 @@
                 <th>Customer Name</th>
                 <th>Customer dni</th>
                 <th>Product</th>
-                <th>Sale Price </th>
+                <th> Amount </th>
+                <th>Shop Price </th>
                 <th>Tax Name </th>
                 <th>Tax Value </th>
                 <th>Half Payment </th>
                 <th>Ticket Date </th>
                 <th>Cashier</th>
+
 
              </tr>
             </thead>
@@ -31,6 +43,7 @@
                   <td>{{ticket.fk_id_ticket.fk_id_person_customer.person_name}}</td>
                   <td>{{ticket.fk_id_ticket.fk_id_person_customer.person_dni}}</td>
                   <td>{{ticket.fk_id_tax_price_product.fk_id_price_product.fk_id_product_provider.fk_id_product.product_name}}</td>
+                  <td>{{ticket.amount}}</td>
                   <td>{{ticket.fk_id_tax_price_product.fk_id_price_product.sale_price}}</td>
                   <td>{{ticket.fk_id_tax_price_product.fk_id_tax.tax_name}}</td>
                   <td>{{ticket.fk_id_tax_price_product.fk_id_tax.tax_value}}</td>
@@ -39,6 +52,7 @@
                   <td>{{ticket.fk_id_ticket.fk_id_person_cashier.person_name}}</td>
 
                </tr>
+               <p>{{total}}</p>
                {% endfor %}
               </tbody>
           </table>

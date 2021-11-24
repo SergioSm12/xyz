@@ -51,8 +51,13 @@ class PersonForm(forms.ModelForm):
 class TicketDetailForm(forms.ModelForm):
     class Meta:
         model= TicketDetail
-        fields='__all__'
+        fields=('amount', 'fk_id_tax_price_product', 'fk_id_ticket')
+        labels = {
+            'fk_id_tax_price_product': 'Product',
+            'fk_id_ticket': 'Ticket Customer',
+        }
         widgets = {
-            "devolution_request": forms.SelectDateWidget(),
-            "devolution_approved": forms.SelectDateWidget()
+            "amount": forms.TextInput(attrs={'class':'form-control'}),
+            "fk_id_tax_price_product": forms.Select(attrs={'class':'form-control'}),
+            'fk_id_ticket': forms.Select(attrs={'class':'form-control'}),
         }

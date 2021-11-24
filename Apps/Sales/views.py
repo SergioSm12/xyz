@@ -4,6 +4,15 @@ from django.db.models import Sum
 from django.views.generic import ListView
 from .forms import *
 
+import os
+from django.conf import settings
+from django.http import HttpResponse
+from django.template import Context
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
+
+
 # Create your views here.
 def home(request):
     data ={
@@ -250,7 +259,7 @@ def createTicketDetail(request):
         formulario = TicketDetailForm(data=request.POST)
         if formulario.is_valid():
             formulario.save()
-            return redirect(to='listTicketDetail')
+            return redirect(to='listCustomers')
         else:
             data["form"] = formulario
     return render(request, 'TicketDetail/createTicketDetail.html', data)
@@ -286,7 +295,5 @@ def assignTax(request):
         else:
             data["form"] = formulario
     return render(request, 'TaxPriceProduct/assignTax.html', data)
-
-
 
 

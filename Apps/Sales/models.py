@@ -63,7 +63,7 @@ class ProductProvider(models.Model):
         db_table = 'product_provider'
 
     def __str__(self):
-        return self.bar_code
+        return str(self.fk_id_product)
 
 
 
@@ -79,6 +79,9 @@ class PriceProduct(models.Model):
 
     class Meta:
         db_table = 'price_product'
+
+    def __str__(self):
+        return str(self.fk_id_product_provider)
 
 
 
@@ -103,6 +106,9 @@ class TaxPriceProduct(models.Model):
     class Meta:
         db_table = 'tax_price_product'
 
+    def __str__(self):
+        return str(self.fk_id_price_product)
+
 
 
 class Ticket(models.Model):
@@ -114,6 +120,9 @@ class Ticket(models.Model):
 
     class Meta:
         db_table = 'ticket'
+
+    def __str__(self):
+        return str(self.fk_id_person_customer)
 
 
 
@@ -140,6 +149,8 @@ class TicketDetail(models.Model):
     class Meta:
         db_table = 'ticket_detail'
 
+    def __str__(self):
+        return str(self.fk_id_tax_price_product)
 class PersonPersonType(models.Model):
     id_person_person_type = models.AutoField(primary_key=True)
     fk_id_person_type = models.ForeignKey(PersonType, db_column='fk_id_person_type', on_delete=models.CASCADE)

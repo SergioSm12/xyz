@@ -8,7 +8,7 @@
               <h2>Options</h2>
               <a href="{% url 'listPerson' %}" class="btn btn-info" role="button">Admin Person</a>
               <br><br>
-              <a href="{% url 'createTicketDetail' %}" class="btn btn-info" role="button">Manage Returns</a>
+              <a href="{% url 'createTicketDetail' %}" class="btn btn-info" role="button">Sell</a>
 
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <th>Devolution Approved</th>
                 <th>Description</th>
                 <th>Administrator</th>
-                <th colspan="2">Options</th>
+                <th colspan="3">Options</th>
              </tr>
             </thead>
               <tbody>
@@ -45,6 +45,7 @@
                   <td>{{td.fk_id_person_administrator}}</td>
                   <td><a href="{% url 'editTicketDetail' td.id_ticket_detail %}" class="btn btn-info">Edit</a></td>
                   <td><a href="{% url 'deleteTicketDetail' td.id_ticket_detail %}" class="btn btn-danger btnEliminacion">Delete</a></td>
+                  <td><a href="{% url 'listCustomers' %}" class="btn btn-info btnfactura">ticket</a></td>
                </tr>
                {% endfor %}
               </tbody>
